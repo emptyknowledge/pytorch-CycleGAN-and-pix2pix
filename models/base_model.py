@@ -127,9 +127,10 @@ class BaseModel(ABC):
     def get_current_visuals(self):
         """Return visualization images. train.py will display these images with visdom, and save the images to a HTML"""
         visual_ret = OrderedDict()
+        pixel_scale_size = self.opt.pixel_scale_size if "scale_pixel" in self.opt.preprocess and self.opt.pixel_scale_size else 1
         for name in self.visual_names:
             if isinstance(name, str):
-                visual_ret[name] = getattr(self, name)
+                visual_ret[name] = getattr(self, name) / pixel_scale_size
         return visual_ret
 
     def get_current_losses(self):

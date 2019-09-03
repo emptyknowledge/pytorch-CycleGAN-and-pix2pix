@@ -14,7 +14,8 @@ class Config(object):
     self.checkpoints_dir = "./check_point"
     self.name = "cycle_gan_modify"
     self.model = "cycle_gan_modify"
-    self.preprocess = "" # 如果数据输入维度每次变化较大， 设置为 scale_width
+    self.preprocess = ["resize", "scale_pixel"] # 如果数据输入维度每次变化较大， 设置为 scale_width
+    self.pixel_scale_size = 1/255
     # local cfg
     self.lambda_identity = 0 # identity weight?
     self.input_nc = 3 # the number of  channel in input file.
@@ -46,7 +47,7 @@ class Config(object):
     self.pool_size = 50 #
     # date sets
     self.dataset_mode = "local_unaligned" #
-    self.dataroot = r"D:\Data\CycleGan" #
+    self.dataroot = "/home/cluster/ll/data/CycleGan" #
     self.phase = "data_" #
     self.direction = "BtoA" #
     self.max_dataset_size = 65525 #
